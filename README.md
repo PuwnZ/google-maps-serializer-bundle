@@ -37,7 +37,7 @@ namespace App\Controller;
 use Puwnz\GoogleMapsBundle\Service\GeocodeService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class FooController  {    
+class FooController extends AbstractController {
     public function getGeocodeResult(string $address, GeocodeService $geocodeService) : JsonResponse
     {
         return $this->json($geocodeService->call($address));
