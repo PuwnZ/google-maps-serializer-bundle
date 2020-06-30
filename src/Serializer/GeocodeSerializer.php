@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class GeocodeSerializer implements ContextAwareNormalizerInterface
 {
-    public function supportsNormalization($data, $format = null, array $context = []) : bool
+    public function supportsNormalization($data, string $format = null, array $context = []) : bool
     {
         return $data instanceof GeocodeResult;
     }
@@ -18,7 +18,7 @@ class GeocodeSerializer implements ContextAwareNormalizerInterface
     /**
      * @param GeocodeResult $object
      */
-    public function normalize($object, $format = null, array $context = []) : array
+    public function normalize($object, string $format = null, array $context = []) : array
     {
         $geocodeGeometry = $object->getGeometry();
         $geometryLocation = $geocodeGeometry->getLocation();
