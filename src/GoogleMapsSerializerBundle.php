@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Puwnz\GoogleMapsBundle;
+namespace Puwnz\GoogleMapsSerializerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
