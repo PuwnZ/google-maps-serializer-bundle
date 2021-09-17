@@ -16,14 +16,14 @@ class GeocodeSerializerTest extends TestCase
     /** @var GeocodeSerializer */
     private $service;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
         $this->service = new GeocodeSerializer();
     }
 
-    public function supportsProvider() : array
+    public function supportsProvider(): array
     {
         return [
             [$this->createMock(GeocodeResult::class), true],
@@ -34,14 +34,14 @@ class GeocodeSerializerTest extends TestCase
     /**
      * @dataProvider supportsProvider
      */
-    public function testSupportsNormalization($data, bool $expected) : void
+    public function testSupportsNormalization($data, bool $expected): void
     {
         $actual = $this->service->supportsNormalization($data);
 
         TestCase::assertSame($expected, $actual);
     }
 
-    public function testNormalize() : void
+    public function testNormalize(): void
     {
         $object = new GeocodeResult();
         $geometry = new GeocodeGeometry();
