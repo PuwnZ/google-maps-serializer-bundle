@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class GeocodeSerializer implements ContextAwareNormalizerInterface
 {
-    public function supportsNormalization($data, $format = null, array $context = []) : bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return $data instanceof GeocodeResult;
     }
@@ -18,7 +18,7 @@ class GeocodeSerializer implements ContextAwareNormalizerInterface
     /**
      * @param GeocodeResult $object
      */
-    public function normalize($object, $format = null, array $context = []) : array
+    public function normalize($object, $format = null, array $context = []): array
     {
         $geocodeGeometry = $object->getGeometry();
         $geometryLocation = $geocodeGeometry->getLocation();
@@ -29,7 +29,7 @@ class GeocodeSerializer implements ContextAwareNormalizerInterface
             'place_id' => $object->getPlaceId(),
             'partial' => $object->isPartialMatch(),
             'types' => $object->getTypes(),
-            'components' => \array_map([$this, 'parseComponents'], $geocodeAddressComponents),
+            'components' => array_map([$this, 'parseComponents'], $geocodeAddressComponents),
             'geometry' => [
                 'lat' => $geometryLocation->getLatitude(),
                 'lng' => $geometryLocation->getLongitude(),
@@ -37,7 +37,7 @@ class GeocodeSerializer implements ContextAwareNormalizerInterface
         ];
     }
 
-    private function parseComponents(GeocodeAddressComponent $component) : array
+    private function parseComponents(GeocodeAddressComponent $component): array
     {
         return [
             'types' => $component->getTypes(),
